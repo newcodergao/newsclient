@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.demo.newsclient2.View.CustomLazyViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        ></com.demo.newsclient2.View.CustomLazyViewPager>
+
+    <RadioGroup
+        android:id="@+id/main_radio"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_gravity="bottom"
+        android:background="@mipmap/bottom_tab_bg"
+        android:orientation="horizontal">
+        <RadioButton
+            android:id="@+id/rb_function"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:drawableTop="@drawable/icon_function"
+            android:text="@string/tab_function"/>
+        <RadioButton
+            android:id="@+id/rb_news_center"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:paddingTop="10dp"
+
+            android:drawableTop="@drawable/icon_newscenter"
+            android:text="@string/tab_news_center"/>
+        <RadioButton
+            android:id="@+id/rb_smart_service"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:paddingTop="10dp"
+
+            android:drawableTop="@drawable/icon_smartservice"
+            android:text="@string/tab_smart_service"/>
+        <RadioButton
+            android:id="@+id/rb_gov_affairs"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:paddingTop="10dp"
+
+            android:drawableTop="@drawable/icon_govaffairs"
+            android:text="@string/tab_gov_affairs"/>
+        <RadioButton
+            android:id="@+id/rb_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:drawableTop="@drawable/icon_setting"
+            android:text="@string/tab_setting"
+            android:button="@null"
+            android:paddingTop="10dp"
+
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_weight="1"/>
+    </RadioGroup>
+</LinearLayout>
