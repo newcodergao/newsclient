@@ -17,7 +17,7 @@ public class NewsCenterPager extends BasePager {
 	@Override
 	protected View initView() {
 		TextView textView = new TextView(mContext);
-		textView.setText("新闻中心");
+		textView.setText("新闻中心1111");
 		textView.setTextColor(Color.parseColor("#000000"));
 		return textView;
 	}
