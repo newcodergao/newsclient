@@ -21,10 +21,12 @@ public class CustomLazyViewPager extends LazyViewPager {
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         return super.onInterceptTouchEvent(ev);
+//        return true;
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
-        return super.onTouchEvent(ev);
+//        return super.onTouchEvent(ev);
+        return false;
     }
 }

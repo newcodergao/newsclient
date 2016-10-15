@@ -45,7 +45,6 @@ public class HomeFragment extends BaseFragment implements LazyViewPager.OnPageCh
         mDatas.add(new SmartServicePager(mContext));
         mDatas.add(new GovAffairsPager(mContext));
         mDatas.add(new SettingPager(mContext));
-        LogUtils.debugI(this,"mViewPager=="+mViewPager);
 
         mViewPager.setOnPageChangeListener(this);
 
@@ -90,26 +89,26 @@ public class HomeFragment extends BaseFragment implements LazyViewPager.OnPageCh
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         switch(checkedId){
            case R.id.rb_function:
-               mViewPager.setCurrentItem(0);
+               mViewPager.setCurrentItem(0,false);
                mSlidingMenu.setTouchModeBehind(SlidingMenu.TOUCHMODE_NONE);
            break;
             case R.id.rb_news_center:
-                mViewPager.setCurrentItem(1);
+                mViewPager.setCurrentItem(1,false);
                 mSlidingMenu.setTouchModeBehind(SlidingMenu.TOUCHMODE_FULLSCREEN);
 
                 break;
             case R.id.rb_smart_service:
-                mViewPager.setCurrentItem(2);
+                mViewPager.setCurrentItem(2,false);
                 mSlidingMenu.setTouchModeBehind(SlidingMenu.TOUCHMODE_FULLSCREEN);
 
                 break;
             case R.id.rb_gov_affairs:
-                mViewPager.setCurrentItem(3);
+                mViewPager.setCurrentItem(3,false);
                 mSlidingMenu.setTouchModeBehind(SlidingMenu.TOUCHMODE_FULLSCREEN);
 
                 break;
             case R.id.rb_setting:
-                mViewPager.setCurrentItem(4);
+                mViewPager.setCurrentItem(4,false);
                 mSlidingMenu.setTouchModeBehind(SlidingMenu.TOUCHMODE_NONE);
 
                 break;
@@ -125,7 +124,7 @@ public class HomeFragment extends BaseFragment implements LazyViewPager.OnPageCh
 
     @Override
     public void onPageSelected(int position) {
-
+        BasePager basePager = mDatas.get(position);
 
     }
 

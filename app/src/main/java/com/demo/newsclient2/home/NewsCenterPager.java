@@ -1,9 +1,10 @@
 package com.demo.newsclient2.home;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.View;
-import android.widget.TextView;
+
+import com.demo.newsclient2.R;
+import com.demo.newsclient2.utils.LogUtils;
 
 /**
  * 新闻中心
@@ -16,11 +17,13 @@ public class NewsCenterPager extends BasePager {
 
 	@Override
 	protected View initView() {
-		TextView textView = new TextView(mContext);
-		textView.setText("新闻中心1111");
-		textView.setTextColor(Color.parseColor("#000000"));
-		return textView;
+		View view = View.inflate(mContext, R.layout.news_center_frame, null);
+		LogUtils.debugI(this,"view==="+view);
+		initTitleBar(view);
+		return view;
 	}
+
+
 
 	@Override
 	protected void initData() {
