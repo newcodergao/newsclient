@@ -53,6 +53,14 @@ public class HomeFragment extends BaseFragment implements LazyViewPager.OnPageCh
 //        mViewPager.setCurrentItem(1);
         main_radio.check(R.id.rb_news_center);
     }
+    /**
+     * 返回新闻中心
+     * @return
+     */
+    public NewsCenterPager getNewsCenterPager() {
+        return (NewsCenterPager) mDatas.get(1);
+    }
+
     private class HomeAdapter extends PagerAdapter{
 
         @Override
@@ -90,26 +98,26 @@ public class HomeFragment extends BaseFragment implements LazyViewPager.OnPageCh
         switch(checkedId){
            case R.id.rb_function:
                mViewPager.setCurrentItem(0,false);
-               mSlidingMenu.setTouchModeBehind(SlidingMenu.TOUCHMODE_NONE);
-           break;
+               mSlidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_NONE);
+              break;
             case R.id.rb_news_center:
                 mViewPager.setCurrentItem(1,false);
-                mSlidingMenu.setTouchModeBehind(SlidingMenu.TOUCHMODE_FULLSCREEN);
+                mSlidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
 
                 break;
             case R.id.rb_smart_service:
                 mViewPager.setCurrentItem(2,false);
-                mSlidingMenu.setTouchModeBehind(SlidingMenu.TOUCHMODE_FULLSCREEN);
+                mSlidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
 
                 break;
             case R.id.rb_gov_affairs:
                 mViewPager.setCurrentItem(3,false);
-                mSlidingMenu.setTouchModeBehind(SlidingMenu.TOUCHMODE_FULLSCREEN);
+                mSlidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
 
                 break;
             case R.id.rb_setting:
                 mViewPager.setCurrentItem(4,false);
-                mSlidingMenu.setTouchModeBehind(SlidingMenu.TOUCHMODE_NONE);
+                mSlidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_NONE);
 
                 break;
 
@@ -125,6 +133,10 @@ public class HomeFragment extends BaseFragment implements LazyViewPager.OnPageCh
     @Override
     public void onPageSelected(int position) {
         BasePager basePager = mDatas.get(position);
+        if(basePager.isLoaded==false){
+            basePager.initData();
+            basePager.isLoaded=true;
+        }
 
     }
 
@@ -132,4 +144,6 @@ public class HomeFragment extends BaseFragment implements LazyViewPager.OnPageCh
     public void onPageScrollStateChanged(int state) {
 
     }
+
+
 }

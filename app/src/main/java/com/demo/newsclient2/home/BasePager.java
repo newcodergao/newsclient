@@ -6,7 +6,9 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.demo.newsclient2.MainActivity;
 import com.demo.newsclient2.R;
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 /**
  * Created by GSJ
@@ -16,16 +18,20 @@ import com.demo.newsclient2.R;
  */
 
 public abstract class BasePager {
+    public boolean isLoaded=false;
     protected Context mContext;
     protected View view;
     protected TextView txt_title;
+    protected SlidingMenu mSlidingMenu;
+
     public BasePager(Context context) {
         this.mContext=context;
+        mSlidingMenu = ((MainActivity) mContext).getSlidingMenu();
         view=initView();
 
     }
     protected abstract View initView();
-    protected abstract void initData();
+    public abstract void initData();
     public View getRootView(){
 //        return initView();//在界面上显示不了视图
         return view;//可以在界面上显示视图

@@ -7,4 +7,6 @@ package com.demo.newsclient2.utils;
  */
 public interface Constants {
     String isFirstOpen="is_first_open";
+//新闻中心
+    String NEW_CENTER = "http://192.168.1.107/zhbj/categories.json";
 }

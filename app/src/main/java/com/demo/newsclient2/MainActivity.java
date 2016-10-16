@@ -4,10 +4,14 @@ import android.os.Bundle;
 
 import com.demo.newsclient2.fragment.HomeFragment;
 import com.demo.newsclient2.fragment.MenuFragment;
+import com.demo.newsclient2.utils.LogUtils;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 
 public class MainActivity extends SlidingFragmentActivity {
+
+    private HomeFragment homeFragment;
+    private MenuFragment menuFragment;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -17,14 +21,7 @@ public class MainActivity extends SlidingFragmentActivity {
         setContentView(R.layout.activity_main);
 //        SlidingMenu menu = new SlidingMenu(this);
         SlidingMenu menu = getSlidingMenu();
-//        menu.setMode(SlidingMenu.LEFT);
-//        menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
-//        menu.setShadowWidthRes(R.dimen.shadow_width);
-//        menu.setShadowDrawable(R.drawable.shadow);
-//        menu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
-//        menu.setFadeDegree(0.35f);
-//        menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
-
+//
         // 设置滑动菜单的模式
         // SlidingMenu.RIGHT右边的滑动菜单
         // SlidingMenu.LEFT左边的滑动菜单
@@ -45,10 +42,32 @@ public class MainActivity extends SlidingFragmentActivity {
 //        menu.setMenu(R.layout.menu);
 
 //        menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
-        HomeFragment homeFragment=new HomeFragment();
-        MenuFragment menuFragment=new MenuFragment();
-        getSupportFragmentManager().beginTransaction().replace(R.id.main_menu,homeFragment,"Main").commit();
-        getSupportFragmentManager().beginTransaction().replace(R.id.menu,menuFragment,"Menu").commit();
+        homeFragment = new HomeFragment();
+        menuFragment = new MenuFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.menu, menuFragment,"Menu").commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.main_menu, homeFragment,"Main").commit();
+    }
 
+    /**
+     * @return  左侧菜单的fragment
+     */
+    public MenuFragment getMenuFragment(){
+//      getSupportFragmentManager().executePendingTransactions();
+     menuFragment=(MenuFragment) getSupportFragmentManager().findFragmentByTag("Menu");
+        return  menuFragment;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        LogUtils.debugI(this,"getMenuFragment()==="+getMenuFragment().getActivity());
+    }
+
+    /**
+     * @return  主界面的fragment
+     */
+    public HomeFragment getHomeFragment(){
+        homeFragment= (HomeFragment) getSupportFragmentManager().findFragmentByTag("Main");
+        return homeFragment;
     }
 }

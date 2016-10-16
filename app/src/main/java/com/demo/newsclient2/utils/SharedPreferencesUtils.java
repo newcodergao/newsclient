@@ -28,4 +28,15 @@ public class SharedPreferencesUtils {
       return   sp.getBoolean(key,value);
 
     }
+    public static void putString(Context context, String key, String value) {
+        if (sp == null)
+            sp = context.getSharedPreferences(name, 0);
+        sp.edit().putString(key, value).commit();
+    }
+    public static String getString(Context context, String key, String defValue) {
+        if (sp == null)
+            sp = context.getSharedPreferences(name, 0);
+        return sp.getString(key, defValue);
+    }
+
 }
