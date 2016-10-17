@@ -65,11 +65,12 @@ public class NewsPager extends BasePager {
 			@Override
 			public void onPageSelected(int position) {
 				currentPosition=position;
+				mNewsItemDatas.get(position).initData();//展示新闻条目的数据
 
 				if(position==0){
-				  mSlidingMenu.setMode(SlidingMenu.TOUCHMODE_NONE);
+				  mSlidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_NONE);
 				}else{
-					mSlidingMenu.setMode(SlidingMenu.TOUCHMODE_FULLSCREEN);
+					mSlidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
 
 				}
 
@@ -77,13 +78,17 @@ public class NewsPager extends BasePager {
 
 			@Override
 			public void onPageScrollStateChanged(int state) {
+				switch(state){
+
+
+				}
 
 			}
 		});
 
 		mTabPageIndicator.setViewPager(mViewPager);
 		mTabPageIndicator.setCurrentItem(currentPosition);
-
+		mNewsItemDatas.get(currentPosition).initData();
 
 	}
 

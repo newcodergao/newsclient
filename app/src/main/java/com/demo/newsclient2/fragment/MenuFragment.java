@@ -71,7 +71,6 @@ public class MenuFragment extends BaseFragment implements AdapterView.OnItemClic
                 .switchFragment(position);
         adapter.notifyDataSetChanged();
         mSlidingMenu.toggle();
-        LogUtils.debugI(this,"onItemClick==="+adapter);
 
     }
 

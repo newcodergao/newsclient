@@ -44,6 +44,12 @@
     <dimen name="default_title_indicator_text_size">15dp</dimen>
     <dimen name="default_title_indicator_title_padding">5dp</dimen>
     <dimen name="default_title_indicator_top_padding">7dp</dimen>
+    <item name="black" type="drawable">#000000</item>
+    <item name="green" type="drawable">#ff40929C</item>
+    <item name="red" type="drawable">#00000000</item>
+    <item name="transparent" type="drawable">#00000000</item>
+    <item name="white" type="drawable">#ffffffff</item>
+    <item name="yellow" type="drawable">#ffff9000</item>
     <integer name="default_circle_indicator_orientation">0</integer>
     <integer name="default_title_indicator_footer_indicator_style">2</integer>
     <integer name="default_title_indicator_line_position">0</integer>
@@ -53,7 +59,7 @@
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/vpi__dark_theme</item>
     </style>
-    <style name="Theme.PageIndicatorDefaults" parent="android:Theme">
+    <style name="Theme.PageIndicatorDefaults" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="vpiIconPageIndicatorStyle">@style/Widget.IconPageIndicator</item>
         <item name="vpiTabPageIndicatorStyle">@style/Widget.TabPageIndicator</item>
     </style>

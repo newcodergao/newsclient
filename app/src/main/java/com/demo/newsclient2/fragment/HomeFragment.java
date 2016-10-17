@@ -15,7 +15,6 @@ import com.demo.newsclient2.home.GovAffairsPager;
 import com.demo.newsclient2.home.NewsCenterPager;
 import com.demo.newsclient2.home.SettingPager;
 import com.demo.newsclient2.home.SmartServicePager;
-import com.demo.newsclient2.utils.LogUtils;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 import java.util.ArrayList;
@@ -89,7 +88,6 @@ public class HomeFragment extends BaseFragment implements LazyViewPager.OnPageCh
         View view = inflater.inflate(R.layout.frag_home, null);
         ButterKnife.bind(this,view);
         mViewPager= (CustomLazyViewPager) view.findViewById(R.id.view_pager);
-        LogUtils.debugI(this,"mViewPager=="+mViewPager);
         return view;
     }
 
