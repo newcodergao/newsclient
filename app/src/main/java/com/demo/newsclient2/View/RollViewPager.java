@@ -12,12 +12,17 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.demo.newsclient2.MainActivity;
 import com.demo.newsclient2.R;
+import com.demo.newsclient2.fragment.MenuFragment;
 import com.demo.newsclient2.utils.LogUtils;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
+
+import org.xutils.common.util.DensityUtil;
+import org.xutils.image.ImageOptions;
 
 import java.util.List;
 
@@ -37,6 +42,8 @@ public class RollViewPager extends ViewPager {
     private List<View> mDotLists;
     private Task task;
     private MyOnTouchListener onTouchListener;
+    private ImageOptions imageOptions;
+    private RollViewPagerAdapter adapter;
 
     public RollViewPager(Context context,List<View> dotLists) {
         super(context);
@@ -54,6 +61,23 @@ public class RollViewPager extends ViewPager {
                 .considerExifParams(true)
                 .displayer(new FadeInBitmapDisplayer(300))
                 .build();
+        imageOptions = new ImageOptions.Builder()
+                .setImageScaleType(ImageView.ScaleType.CENTER_CROP)
+                .setRadius(DensityUtil.dip2px(4))
+                .setIgnoreGif(false)
+                .setCrop(true)//是否对图片进行裁剪
+                .setFailureDrawableId(R.mipmap.ic_launcher)
+                .setLoadingDrawableId(R.mipmap.ic_launcher)
+                .build();
+
+        ( (MainActivity) mContext).getMenuFragment().setOnStopListener(new MenuFragment.Stop() {
+            @Override
+            public void stop() {
+                if(handler!=null){
+                   handler.removeCallbacks(task);
+                }
+            }
+        });
     }
 
     public RollViewPager(Context context, AttributeSet attrs) {
@@ -83,20 +107,23 @@ public class RollViewPager extends ViewPager {
         this.imageLists=imageLists;
 
     }
-    private int currentPosition;
+
+
+    private int currentPosition=0;
     private class Task implements Runnable {
 
         @Override
         public void run() {
             currentPosition=(currentPosition+1)%imageLists.size();
-            Message message = Message.obtain();
-            handler.sendMessage(message);
+//            Message message = Message.obtain();
+//            handler.sendMessage(message);
+            RollViewPager.this.setCurrentItem(currentPosition);
+            start();
         }
     }
-    private boolean isHasAdapter;
     public  void start(){
-        if(isHasAdapter==false){
-            RollViewPagerAdapter adapter=new RollViewPagerAdapter();
+        if(adapter==null){
+            adapter = new RollViewPagerAdapter();
             this.setAdapter(adapter);
             MyOnPageChangeListener onPageChangeListener=new MyOnPageChangeListener();
             this.addOnPageChangeListener(onPageChangeListener);
@@ -106,8 +133,7 @@ public class RollViewPager extends ViewPager {
    android.os.Handler handler=new android.os.Handler(){
        @Override
        public void handleMessage(Message msg) {
-          RollViewPager.this.setCurrentItem(currentPosition);
-          start();
+
        }
    };
     private class MyOnTouchListener implements OnTouchListener {
@@ -121,7 +147,7 @@ public class RollViewPager extends ViewPager {
                    start();
                break;
                 case MotionEvent.ACTION_CANCEL:
-//                   start();
+                   start();
                break;
                 case MotionEvent.ACTION_MOVE:
                     handler.removeCallbacks(task);
@@ -177,6 +203,7 @@ public class RollViewPager extends ViewPager {
         public Object instantiateItem(ViewGroup container, int position) {
             View view = View.inflate(mContext, R.layout.viewpager_item, null);
             ImageView image = (ImageView) view.findViewById(R.id.image);
+//            x.image().bind(image,imageLists.get(position%imageLists.size()),imageOptions);
             ImageLoader.getInstance().displayImage(imageLists.get(position%imageLists.size()),image,options);
             container.addView(view);
 
@@ -191,7 +218,7 @@ public class RollViewPager extends ViewPager {
 
         @Override
         public int getCount() {
-            return Integer.MAX_VALUE;
+            return imageLists.size();
         }
 
         @Override

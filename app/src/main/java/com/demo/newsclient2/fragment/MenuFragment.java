@@ -28,6 +28,8 @@ import butterknife.ButterKnife;
 public class MenuFragment extends BaseFragment implements AdapterView.OnItemClickListener {
     @Bind(R.id.lv_menu_news_center)
     ListView mLvMenuNewsCenter;
+
+
     @Override
     protected void initData() {
 
@@ -110,5 +112,21 @@ public class MenuFragment extends BaseFragment implements AdapterView.OnItemClic
             }
             return convertView;
         }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+       if(mStop!=null){
+            mStop.stop();
+       }
+
+    }
+    private Stop mStop;
+    public void setOnStopListener(Stop mStop){
+        this.mStop=mStop;
+    }
+    public interface Stop{
+        void stop();
     }
 }

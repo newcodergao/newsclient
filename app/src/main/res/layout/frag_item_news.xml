@@ -6,7 +6,7 @@
 
     <!-- class="com.qianlong.android.view.pullrefreshview.PullToRefreshListView" -->
 
-    <ListView
+    <com.demo.newsclient2.View.pulltorefreshview.PullToRefreshListView
         android:id="@+id/lv_item_news"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

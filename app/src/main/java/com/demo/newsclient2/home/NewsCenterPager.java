@@ -82,10 +82,16 @@ public class NewsCenterPager extends BasePager {
 		params.setConnectTimeout(8000);
 		x.http().get(params, new Callback.CommonCallback<String>() {
 			@Override
-			public void onSuccess(String result) {
+			public void onSuccess(final String result) {
 				SharedPreferencesUtils.putString(mContext,Constants.NEW_CENTER,result);
 				LogUtils.debugI(this,"result==="+result);
+				((MainActivity)mContext).runOnUiThread(new Runnable() {
+					@Override
+					public void run() {
+
 				processData(result);
+					}
+				});
 			}
 
 			@Override

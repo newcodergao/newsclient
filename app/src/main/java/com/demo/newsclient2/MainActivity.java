@@ -16,6 +16,7 @@ public class MainActivity extends SlidingFragmentActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         // 设置菜单页面
         setBehindContentView(R.layout.menu);
         setContentView(R.layout.activity_main);
