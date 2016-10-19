@@ -78,6 +78,26 @@ public class RollViewPager extends ViewPager {
                 }
             }
         });
+        RollViewPager.this.setOnTouchListener(new OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN
+                        || event.getAction() == MotionEvent.ACTION_CANCEL) {
+                    // 暂停
+                    handler.removeCallbacksAndMessages(null);
+                    System.out.println("MotionEvent.ACTION_CANCEL:==========="+event.getAction());
+
+                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                    // 跳动
+                    // mTask.start();
+                    start();
+                    System.out.println("MotionEvent.ACTION_UP:==========="+event.getAction());
+
+                }
+
+                return false;
+            }
+        });
     }
 
     public RollViewPager(Context context, AttributeSet attrs) {
@@ -142,17 +162,24 @@ public class RollViewPager extends ViewPager {
             switch(event.getAction()){
                case MotionEvent.ACTION_DOWN:
                  handler.removeCallbacks(task);
+                   System.out.println("MotionEvent.ACTION_DOWN:===========");
                break;
                 case MotionEvent.ACTION_UP:
                    start();
-               break;
+                    System.out.println("MotionEvent.ACTION_UP:===========");
+
+                    break;
                 case MotionEvent.ACTION_CANCEL:
                    start();
-               break;
+                    System.out.println("MotionEvent.ACTION_CANCEL:===========");
+
+                    break;
                 case MotionEvent.ACTION_MOVE:
                     handler.removeCallbacks(task);
+                    System.out.println("MotionEvent.ACTION_MOVE:===========");
 
-               break;
+
+                    break;
 
             }
             return true;
@@ -207,7 +234,7 @@ public class RollViewPager extends ViewPager {
             ImageLoader.getInstance().displayImage(imageLists.get(position%imageLists.size()),image,options);
             container.addView(view);
 
-            view.setOnTouchListener(onTouchListener);
+//            view.setOnTouchListener(onTouchListener);
             return view;
         }
 

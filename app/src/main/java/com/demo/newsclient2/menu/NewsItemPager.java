@@ -1,12 +1,14 @@
 package com.demo.newsclient2.menu;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.demo.newsclient2.DetailActivity;
 import com.demo.newsclient2.R;
 import com.demo.newsclient2.View.RollViewPager;
 import com.demo.newsclient2.View.pulltorefreshview.PullToRefreshBase;
@@ -71,7 +73,16 @@ public class NewsItemPager extends BasePager {
 		mListView.getRefreshableView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+				NewsItem.DataBean.NewsBean newsBean = (NewsItem.DataBean.NewsBean) mListView.getRefreshableView().getItemAtPosition(position);
+				String url = newsBean.getUrl();
+				boolean read = newsBean.isRead();
+				if(!read){
+				   newsBean.setRead(true);
+				}
+				adapter.notifyDataSetChanged();
+				Intent intent=new Intent(mContext, DetailActivity.class);
+				intent.putExtra("url",url);
+				mContext.startActivity(intent);
 			}
 		});
 		mListView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {

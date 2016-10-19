@@ -141,6 +141,15 @@ public class NewsItem {
             private String title;
             private String type;
             private String url;
+            private boolean isRead;
+
+            public boolean isRead() {
+                return isRead;
+            }
+
+            public void setRead(boolean read) {
+                isRead = read;
+            }
 
             public boolean isComment() {
                 return comment;
